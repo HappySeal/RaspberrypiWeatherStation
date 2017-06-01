@@ -1,7 +1,7 @@
 import Adafruit_DHT as DHT
 import os , time,sqlite3
 import Adafruit_BMP.BMP085 as BMP180
-import Rpi.GPIO as GPIO
+import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(17,GPIO)
 con = sqlite.connect("RaspAir.db")
