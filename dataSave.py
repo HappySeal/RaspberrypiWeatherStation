@@ -17,7 +17,7 @@ while True:
         nem,sic = DHT.read_retry(11,4)
         if  hourMinute() - now == 10:
                 now = hourMinute()
-                cursor.execute("INSERT INTO Hava_Durumu (yil,ay,gun,saat,dakika,sic,nem,basinc) VALUES (?,?,?,?,?,?,?,?)",(int(time.strftime("%Y"))),int(time.strftime("%m")),int(time.strftime("%H")),int(time.strftime("%M")),sic,nem,sensor.read_pressure())
+                cursor.execute("INSERT INTO Hava_Durumu (yil,ay,gun,saat,dakika,sic,nem,basinc) VALUES (?,?,?,?,?,?,?,?)",((int(time.strftime("%Y"))),int(time.strftime("%m")),int(time.strftime("%H")),int(time.strftime("%M")),sic,nem,sensor.read_pressure()))
         else:
                 print(((int(time.strftime("%H")))*60+int(time.strftime("%M")))-now)
                 print("Sicaklik BMP : {0:0.2f} *C".format(sensor.read_temperature()))
