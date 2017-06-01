@@ -4,7 +4,7 @@ import Adafruit_BMP.BMP085 as BMP180
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(17,GPIO.IN)
-con = sqlite.connect("RaspAir.db")
+con = sqlite3.connect("RaspAir.db")
 cursor = con.cursor()
 def table():
         cursor.execute("CREATE TABLE IF NOT EXISTS Hava_Durumu (yil INT,ay INT,gun INT,saat INT ,dakika INT , sic FLOAT , nem FLOAT,basinc FLOAT)")
