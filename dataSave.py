@@ -30,4 +30,5 @@ while True:
 
 
         if(GPIO.input(17)):
+                con.close()
                 quit()
