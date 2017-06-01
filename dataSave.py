@@ -3,7 +3,7 @@ import os , time,sqlite3
 import Adafruit_BMP.BMP085 as BMP180
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(17,GPIO)
+GPIO.setup(17,GPIO.IN)
 con = sqlite.connect("RaspAir.db")
 cursor = con.cursor()
 def table():
