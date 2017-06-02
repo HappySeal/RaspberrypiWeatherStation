@@ -7,9 +7,11 @@ GPIO.setup(17,GPIO.IN)
 con = sqlite3.connect("RaspAir.db")
 cursor = con.cursor()
 def table():
-        cursor.execute("CREATE TABLE IF NOT EXISTS Hava_Durumu (yil INT,ay INT,gun INT,saat INT ,dakika INT , sic FLOAT , nem FLOAT,basinc FLOAT)")
+        cursor.execute("CREATE TABLE IF NOT EXISTS Hava_Durumu (tarih TEXT, sic FLOAT , nem FLOAT,basinc FLOAT)")
 def hourMinute():
         return ((int(time.strftime("%H")))*60+int(time.strftime("%M")))
+def Now():
+        str(time.strftime("%Y")) + "/" + str(time.strftime("%m")) + "/" + str(time.strftime("%d")) + "_" + str(time.strftime("%H")) + ":" + str(time.strftime("%M"))
 table()
 now = hourMinute()
 while True:
@@ -17,7 +19,7 @@ while True:
         nem,sic = DHT.read_retry(11,4)
         if  hourMinute() - now == 10:
                 now = hourMinute()
-                cursor.execute("INSERT INTO Hava_Durumu (yil,ay,gun,saat,dakika,sic,nem,basinc) VALUES (?,?,?,?,?,?,?,?)",((int(time.strftime("%Y"))),int(time.strftime("%m")),(int(time.strftime("%d"))),int(time.strftime("%H")),int(time.strftime("%M")),sic,nem,sensor.read_pressure()))
+                cursor.execute("INSERT INTO Hava_Durumu (tarih,sic,nem,basinc) VALUES (?,?,?,?)",(Now(),sic,nem,sensor.read_pressure()))
         else:
                 print(((int(time.strftime("%H")))*60+int(time.strftime("%M")))-now)
                 print("Sicaklik BMP : {0:0.2f} *C".format(sensor.read_temperature()))
