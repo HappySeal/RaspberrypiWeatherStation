@@ -21,7 +21,7 @@ while True:
                 now = hourMinute()
                 cursor.execute("INSERT INTO Hava_Durumu (tarih,sic,nem,basinc) VALUES (?,?,?,?)",(Now(),sic,nem,(sensor.read_pressure()/100)))
         else:
-                print("En son kayitdan gecen sure {0}".format(((int(time.strftime("%H")))*60+int(time.strftime("%M")))-now))
+                print("En son kayitdan gecen sure {0} dakika".format(((int(time.strftime("%H")))*60+int(time.strftime("%M")))-now))
                 print("Sicaklik BMP : {0:0.2f} *C".format(sensor.read_temperature()))
                 print("Basinc BMP : {0:0.2f} Pa".format(sensor.read_pressure()))
                 print("Rakim BMP : {0:02f} m".format(sensor.read_altitude()))
@@ -30,7 +30,8 @@ while True:
                 print("Nem DHT : {0}".format(nem))
 
 
-
+        time.sleep(1)
+        os.system("clear")
         if(GPIO.input(17)):
                 con.close()
                 quit()
