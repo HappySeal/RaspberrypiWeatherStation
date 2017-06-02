@@ -20,6 +20,7 @@ while True:
         if  hourMinute() - now == 5:
                 now = hourMinute()
                 cursor.execute("INSERT INTO Hava_Durumu (tarih,sic,nem,basinc) VALUES (?,?,?,?)",(Now(),sic,nem,(sensor.read_pressure()/100)))
+                con.commit()
         else:
                 print("En son kayitdan gecen sure {0} dakika".format(((int(time.strftime("%H")))*60+int(time.strftime("%M")))-now))
                 print("Sicaklik BMP : {0:0.2f} *C".format(sensor.read_temperature()))
