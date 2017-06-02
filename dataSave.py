@@ -11,7 +11,7 @@ def table():
 def hourMinute():
         return ((int(time.strftime("%H")))*60+int(time.strftime("%M")))
 def Now():
-        str(time.strftime("%Y")) + "/" + str(time.strftime("%m")) + "/" + str(time.strftime("%d")) + "_" + str(time.strftime("%H")) + ":" + str(time.strftime("%M"))
+        return str(time.strftime("%Y")) + "/" + str(time.strftime("%m")) + "/" + str(time.strftime("%d")) + "_" + str(time.strftime("%H")) + ":" + str(time.strftime("%M"))
 table()
 now = hourMinute()
 while True:
